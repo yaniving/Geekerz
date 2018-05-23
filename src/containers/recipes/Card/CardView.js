@@ -24,8 +24,9 @@ import { Card, Text, Spacer } from '@ui/';
 const styles = StyleSheet.create({
   favourite: {
     position: 'absolute',
-    top: -50,
+    top: 0,
     right: 0,
+    backgroundColor: 'transparent',
   },
 });
 
@@ -80,12 +81,8 @@ class RecipeCard extends Component {
                 style={[styles.favourite]}
               >
                 <Icon
-                  raised
-                  name={'star-border'}
-                  color={isFavourite ? '#FFFFFF' : '#7A7978'}
-                  containerStyle={{
-                    backgroundColor: isFavourite ? '#7A7978' : '#FFFFFF',
-                  }}
+                  name={isFavourite ? 'bookmark' : 'bookmark-border'}
+                  // color={isFavourite ? '#7A7978' : '#FFFFF'}
                 />
               </TouchableOpacity>
               }
