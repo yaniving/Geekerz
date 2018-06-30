@@ -8,8 +8,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-
+// import { Actions } from 'react-native-router-flux';
+import { Linking } from 'react-native';
 // Actions
 import * as RecipeActions from '@redux/recipes/actions';
 
@@ -34,6 +34,7 @@ class RecipeCard extends Component {
 
   static propTypes = {
     recipe: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       subtitle: PropTypes.string.isRequired,
       imagelink: PropTypes.string,
@@ -68,10 +69,14 @@ class RecipeCard extends Component {
      * On Press of Card
      */
   onPressCard = () => {
-    Actions.recipeView({
-      title: this.props.recipe.title,
-      recipe: this.props.recipe,
-    });
+    const { recipe } = this.state;
+    console.log(recipe.articleurl);
+    console.log('===========');
+    Linking.openURL(recipe.articleurl);
+    // Actions.recipeView({
+    //   title: this.props.recipe.title,
+    //   recipe: this.props.recipe,
+    // });
   }
 
     /**
@@ -122,11 +127,11 @@ class RecipeCard extends Component {
         title={recipe.title}
         subtitle={recipe.subtitle}
         url={recipe}
-        articletype={recipe.articletype}
+        articleType={recipe.articletype}
         imagelink={recipe.imagelink}
         writer={recipe.writer}
         createdAt={recipe.createdAt}
-        articleurl={recipe.articleurl}
+        articleUrl={recipe.articleurl}
         onPress={this.onPressCard}
         onPressFavourite={(user && user.uid) ? this.onPressFavourite : null}
         isFavourite={(user && user.uid && this.isFavourite()) && true}

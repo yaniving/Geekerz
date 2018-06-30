@@ -32,6 +32,15 @@ const navbarPropsTabs = {
   },
 };
 
+const navbarPropsTabsNoTop = {
+    ...AppConfig.navbarPropsNoBar,
+    // renderLeftButton: () => <NavbarMenuButton />,
+    sceneStyle: {
+        ...AppConfig.navbarPropsNoBar.sceneStyle,
+        paddingBottom: AppSizes.tabbarHeight,
+    },
+};
+
 
 /* Routes ==================================================================== */
 const scenes = (

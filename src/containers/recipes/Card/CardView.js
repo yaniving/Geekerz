@@ -15,10 +15,10 @@ import {
 import { Icon } from 'react-native-elements';
 
 // Consts and Libs
-import { AppStyles } from '@theme/';
+// import { AppStyles } from '@theme/';
 
 // Components
-import { Card, Text, Spacer } from '@ui/';
+import { Card, Text } from '@ui/';
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -35,12 +35,14 @@ class RecipeCard extends Component {
   static componentName = 'RecipeCard';
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    // id: PropTypes.string.isRequired,
     imagelink: PropTypes.string.isRequired,
     writer: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    articleUrl: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     createdAt: PropTypes.string,
+    articleType: PropTypes.string.isRequired,
     onPress: PropTypes.func,
     onPressFavourite: PropTypes.func,
     isFavourite: PropTypes.bool,
@@ -53,9 +55,14 @@ class RecipeCard extends Component {
     createdAt: '',
   }
 
+  onPress() {
+    const { onPress, articleUrl } = this.props;
+    onPress(articleUrl);
+  }
+
   render = () => {
-    const { title, subtitle, imagelink, onPress, onPressFavourite,
-            isFavourite, createdAt, writer, articletype } = this.props;
+    const { title, subtitle, imagelink, onPressFavourite, onPress,
+            isFavourite, createdAt, writer, articleType } = this.props;
     const date = new Date(createdAt);
     const monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const createdDate = `${monthNamesShort[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
@@ -63,7 +70,7 @@ class RecipeCard extends Component {
       <TouchableOpacity activeOpacity={1} onPress={onPress}>
         <Card image={imagelink && { uri: imagelink }} >
           <View >
-            <Text h4> {articletype} </Text>
+            <Text h4> {articleType} </Text>
             <Text h3 style={{ color: '#212121' }} >{title}</Text>
             <Text style={{ fontSize: 12, color: '#484848' }}>{subtitle}</Text>
             <View style={{ marginTop: 10 }}>

@@ -106,7 +106,7 @@ class RecipeView extends Component {
       <View style={[AppStyles.container]}>
         <AppWebView url={articleurl} />
         <TouchableOpacity
-            onPress={() => { Linking.openURL(articleurl); }}
+          onPress={() => { Linking.openURL(articleurl); }}
           style={{ position: 'absolute', bottom: 20, right: 0, backgroundColor: '#0E4EF8' }}
         >
           <Text  style={{fontSize: 14, color: '#FFF', fontWeight: 'bold', padding: 10}}>
